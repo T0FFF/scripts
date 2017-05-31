@@ -164,6 +164,8 @@ fi
 ```
 ### Boucles
 ```
+for i in a b c; do echo $i; done;
+
 for (( i=0; i<4;i++ ))
 do
 	echo $i
