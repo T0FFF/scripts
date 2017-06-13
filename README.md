@@ -70,6 +70,16 @@ docker inspect --format '{{ .NetworkSettings.IPAddress }}' mailserver
 172.17.0.44
 ```
 
+# Parameter
+```
+echo '$? = ' $? # Return code of last cmd
+echo '$@ = ' $@ # All param
+echo '$$ = ' $$ # Pid
+echo '$0 = ' $0 # scriptname
+echo '$1 = ' $1 # #1 param
+echo '$2 = ' $2 # 2# param...
+```
+
 # Shell
 ```
 here=$(dirname $(readlink -f $0))
