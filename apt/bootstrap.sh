@@ -6,7 +6,7 @@ NC='\033[0m' # No Color
 
 if [ -z "$(which sudo)" ]; then
 	echo "${YELLOW}sudo not found${NC}"
-	apt-get update && apt-get install -y sudo vim
+	apt-get update && apt-get install -y sudo
 fi
 
 
