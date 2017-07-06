@@ -1,5 +1,9 @@
 # Ubuntu / Debian
 ```
+
+sh -c "$(wget https://raw.githubusercontent.com/T0FFF/scripts/master/apt/bootstrap.sh -O -)"
+sh -c "$(wget https://raw.githubusercontent.com/T0FFF/scripts/master/apt/boshTools.sh -O -)"
+
 kernel headers : apt-get install linux-headers-$(uname -r)
 
 apt-get install ssmtp mailutils zsh shellcheck
