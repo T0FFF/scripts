@@ -31,17 +31,22 @@ sh -c "$(wget https://raw.githubusercontent.com/T0FFF/oh-my-zsh/master/tools/ins
 if [ $(whoami) != "root" ]
 then
 	user=$(whoami)
-	sudo echo "source /home/$user/.zshrc" > /root/.zshrc
-	chsh -s /bin/zsh $user
-	chsh -s /bin/zsh root
+	echo "source /home/$user/.zshrc" | sudo tee -a /root/.zshrc > /dev/null
+	sudo chsh -s /bin/zsh $user
+	sudo chsh -s /bin/zsh root
 else
 	chsh -s /bin/zsh root
 fi
 
 echo "${YELLOW}Configure timezone${NC}"
-echo "Europe/Paris" > /etc/timezone
-rm /etc/localtime
-dpkg-reconfigure -f noninteractive tzdata
+if ! grep -q "TZ='Europe" ~/.zshrc
+then
+	echo "TZ='Europe/Paris';export TZ" >> ~/.zshrc
+fi
+
+echo "Europe/Paris" | sudo tee /etc/timezone > /dev/null
+sudo rm /etc/localtime
+sudo dpkg-reconfigure -f noninteractive tzdata
 
 echo "${YELLOW}Configure git${NC}"
 git config --global credential.helper cache

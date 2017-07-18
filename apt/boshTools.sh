@@ -1,23 +1,27 @@
 #!/bin/sh
 
 
-bosh_cli_version="1.3262.24.0"
-bosh_init_version="0.0.103"
-cf_cli_version="6.26.0"
-terraform_version="0.8.5"
+
+dockerfile_result=$(wget -qO- https://raw.githubusercontent.com/orange-cloudfoundry/orange-cf-bosh-cli/master/Dockerfile)
+
+bosh_cli_version="$(echo "$dockerfile_result" | grep bosh_cli_version= |  cut -d \" -f2)"
+bosh_init_version="$(echo "$dockerfile_result" | grep bosh_init_version= |  cut -d \" -f2)"
+cf_cli_version="$(echo "$dockerfile_result" | grep cf_cli_version= |  cut -d \" -f2)"
+terraform_version="$(echo "$dockerfile_result" | grep terraform_version= |  cut -d \" -f2)"
 http_proxy=
 https_proxy=
-
 
 sudo apt-get update && sudo apt-get install -y procps
 
 curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 sudo curl -L https://get.rvm.io | bash
 
-
 . /etc/profile.d/rvm.sh
 
-echo ". /etc/profile.d/rvm.sh" >> ~/.zshrc
+if ! grep -q "/etc/profile.d/rvm.sh" ~/.zshrc
+then
+	echo ". /etc/profile.d/rvm.sh" >> ~/.zshrc
+fi
 
 /bin/bash -l -c "http_proxy=$http_proxy https_proxy=$https_proxy rvm requirements" 
 /bin/bash -l -c "http_proxy=$http_proxy https_proxy=$https_proxy rvm install 2.3" 
@@ -31,9 +35,9 @@ wget -O /tmp/cf.deb "https://cli.run.pivotal.io/stable?release=debian64&version=
 dpkg -i /tmp/cf.deb
 
 wget -O /tmp/terraform.zip "https://releases.hashicorp.com/terraform/${terraform_version}/terraform_${terraform_version}_linux_amd64.zip"
-unzip /tmp/terraform.zip -d /usr/local/bin 
-chmod 755 /usr/local/bin/terraform
+sudo unzip -o /tmp/terraform.zip -d /usr/local/bin 
+sudo chmod 755 /usr/local/bin/terraform
 
 export LC_ALL=C && \
-pip install --upgrade pip && \
-pip install python-openstackclient
+sudo pip install --upgrade pip && \
+sudo pip install python-openstackclient
