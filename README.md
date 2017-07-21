@@ -302,6 +302,16 @@ if [ $(grep -c "test" fileTest.txt) ]; then ....
 i=$(($i+1))
 ```
 
+### Random
+```
+sh:
+shuf -i 0-1 -n 1
+$(( $(tr -cd 0-9 </dev/urandom | head -c 3) % 2)) (error if 0xx %2)
+$(( $(seq 1 999999 | sort -R | head -1) % 2))
+bash:
+$(($RANDOM%2))
+```
+
 ### Comparaison d'entiers - nombres
 ```
 [ $a -eq $b ] 	égalité entre a et b
