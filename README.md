@@ -243,6 +243,8 @@ do
 	echo "status:$status-$path"
 done < test1.csv
 IFS=$OLDIFS
+
+z=0;for i in {1..10}; do echo "***$i";./test.sh;[ $? != 0 ] && z=$(($z+1)) || echo "0";done;echo $z/$i;
 ```
 ### Condition
 ```
