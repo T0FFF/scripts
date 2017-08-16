@@ -138,7 +138,8 @@ echo awk -F ":" '{print "Nom : "$1}' /etc/passwd
 ```
 sed -i "s/$OLD_IP/$DOCKER_IP/g" <file>
 out=`echo $1 | sed -e "s|-raw.\(.*\)$|.\1|"`
-... | sed -e 's/^ *//g' -e 's/ *$//g' -e 's/\"//g'
+... | sed -e 's/^ *//g' -e 's/ *$//g' -e 's/\"//g'<file>
+sed -i "s/^\(\$dbserver=\).*/\1'mysqlserver';/" 
 ```
 
 ### Read
