@@ -38,6 +38,11 @@ lsb_release -d
 /etc/sudoers
 <user> ALL=(ALL) NOPASSWD: ALL
 -----------------------------------------------
+screen
+List: screen -ls
+Create: screen -S
+Attach: screen -r <id>.<session_name>
+detach: Ctrl A followed by D 
 
 Disable lock screen
 xset -dpms
