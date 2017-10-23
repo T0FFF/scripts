@@ -38,6 +38,11 @@ lsb_release -d
 /etc/sudoers
 <user> ALL=(ALL) NOPASSWD: ALL
 -----------------------------------------------
+screen
+List: screen -ls
+Create: screen -S
+Attach: screen -r <id>.<session_name>
+detach: Ctrl A followed by D 
 
 Disable lock screen
 xset -dpms
@@ -138,7 +143,8 @@ echo awk -F ":" '{print "Nom : "$1}' /etc/passwd
 ```
 sed -i "s/$OLD_IP/$DOCKER_IP/g" <file>
 out=`echo $1 | sed -e "s|-raw.\(.*\)$|.\1|"`
-... | sed -e 's/^ *//g' -e 's/ *$//g' -e 's/\"//g'
+... | sed -e 's/^ *//g' -e 's/ *$//g' -e 's/\"//g'<file>
+sed -i "s/^\(\$dbserver=\).*/\1'mysqlserver';/" 
 ```
 
 ### Read
@@ -243,6 +249,8 @@ do
 	echo "status:$status-$path"
 done < test1.csv
 IFS=$OLDIFS
+
+z=0;for i in {1..10}; do echo "***$i";./test.sh;[ $? != 0 ] && z=$(($z+1)) || echo "0";done;echo $z/$i;
 ```
 ### Condition
 ```
@@ -300,6 +308,16 @@ if [ $(grep -c "test" fileTest.txt) ]; then ....
 ### Calcul
 ```
 i=$(($i+1))
+```
+
+### Random
+```
+sh:
+shuf -i 0-1 -n 1
+$(( $(tr -cd 0-9 </dev/urandom | head -c 3) % 2)) (error if 0xx %2)
+$(( $(seq 1 999999 | sort -R | head -1) % 2))
+bash:
+$(($RANDOM%2))
 ```
 
 ### Comparaison d'entiers - nombres
