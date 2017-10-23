@@ -50,6 +50,8 @@ sudo dpkg-reconfigure -f noninteractive tzdata
 
 echo "${YELLOW}Configure git${NC}"
 git config --global credential.helper cache
-
+git config --global user.name "Christophe LE COZ"
+git config --global user.email christophe.lecoz@orange.com
+git config --global http.sslUerify "false"
 
 sudo apt-get clean && sudo apt-get autoclean && sudo apt-get autoremove && sudo rm -rf /var/lib/{apt,dpkg,cache,log}
