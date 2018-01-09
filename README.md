@@ -316,6 +316,7 @@ sh:
 shuf -i 0-1 -n 1
 $(( $(tr -cd 0-9 </dev/urandom | head -c 3) % 2)) (error if 0xx %2)
 $(( $(seq 1 999999 | sort -R | head -1) % 2))
+pass=`date | md5sum | base64 | head -c 20; echo`
 bash:
 $(($RANDOM%2))
 ```
