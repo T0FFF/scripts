@@ -145,6 +145,10 @@ sed -i "s/$OLD_IP/$DOCKER_IP/g" <file>
 out=`echo $1 | sed -e "s|-raw.\(.*\)$|.\1|"`
 ... | sed -e 's/^ *//g' -e 's/ *$//g' -e 's/\"//g'<file>
 sed -i "s/^\(\$dbserver=\).*/\1'mysqlserver';/" 
+# Insert <new> before pattern
+sed -i "/<pattern>/i<new>/" <file>
+# After
+sed -i "/<pattern>/a<new>/" <file>
 ```
 
 ### Read
@@ -198,6 +202,7 @@ fi
 ### Boucles
 ```
 for i in a b c; do echo $i; done;
+for network in "a" "b" "c"; do ...
 
 for (( i=0; i<4;i++ ))
 do
@@ -211,6 +216,8 @@ do
 	echo $i
 done
 
+for i in `ls`; do echo $i; done;
+
 j=1
 while [ $j -le 3 ]
 do
@@ -218,19 +225,23 @@ do
 	j=$(($j+1))
 done
 
+# Bash
 while (( h++ < 3 ))
 do
 	echo $h
 done
 
+# Bash
 while read; do
 	echo $REPLY
 done < <(find . -type f)
 
+# Bash
 var=$(ls / | (
 while read; do echo $REPLY; done
 ))
 
+# Bash
 while read; do
 	name=$(echo $REPLY|cut -d ":" -f1)
 	echo "Nom : "$name
