@@ -295,7 +295,7 @@ fi
 [ "$var" = "OK" ] && echo "OK" || echo "KO"
 ```
 
-### if grep
+### grep
 ```
 if grep -q $host /etc/hosts
 then
@@ -316,6 +316,9 @@ else
 fi
 
 if [ $(grep -c "test" fileTest.txt) ]; then ....
+
+# return x line before and after the pattern, if it founds:
+grep -ir -C 1 <pattern> <file>
 ```
 
 ### Calcul
