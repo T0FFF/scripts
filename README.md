@@ -149,6 +149,8 @@ sed -i "s/^\(\$dbserver=\).*/\1'mysqlserver';/"
 sed -i "/<pattern>/i<new>/" <file>
 # After
 sed -i "/<pattern>/a<new>/" <file>
+# replace by <value> in key: value
+sed -i "s/^\(<key>: \).*/\1<value>/" 
 ```
 
 ### Read
