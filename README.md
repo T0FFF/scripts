@@ -112,6 +112,7 @@ filename="${SCRIPTNAME%.*}"
 
 ### Trim 
 ```
+Remove ^M : sed -i 's/\r//g' <file>
 Start sed -e 's/^[[:space:]]*//'
 End sed -e 's/[[:space:]]*$//'
 Both sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'
