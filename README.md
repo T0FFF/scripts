@@ -507,6 +507,10 @@ Ctrl+b p - move to the (p)revious window.
 
 Ctrl+b d - Detach session
 ```
+### Byobu
+Ctrl + A ?
+Ctrl + AC (create window)
+Ctrl + AA (switch)
 
 ### rsync
 ```
