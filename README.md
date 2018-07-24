@@ -511,6 +511,7 @@ Ctrl+b d - Detach session
 Ctrl + A ?
 Ctrl + AC (create window)
 Ctrl + AA (switch)
+Shift + pageUp / pageDown (scroll)
 
 ### rsync
 ```
