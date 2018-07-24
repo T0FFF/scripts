@@ -155,6 +155,9 @@ sed -i "s/^\(<key>: \).*/\1<value>/"
 
 ### Read
 ```
+read -p "Continue? (y/n) " RESP; [ "$RESP" = "n" ] && exit 1
+echo "Continue...."
+
 read -p "Please enter the hostname " host
 echo "Regle à supprimer:"
 read -p "[fail2ban-ssh 1] " rule
