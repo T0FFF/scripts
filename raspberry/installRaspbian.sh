@@ -18,6 +18,12 @@ rpi-update
 apt-get install samba unrar-free zlib1g-dev gcc make git autoconf autogen automake pkg-config tightvncserver rpi-update vim mlocate net-tools tcpdump zsh vlc motion kodi hdparm sysbench xfce4 xfce4-goodies iceweasel
 
 update-rc.d tightvnc defaults
+cd ~
+git clone git://github.com/kanaka/noVNC
+vim sudo /etc/rc.local
+# start novnc server
+sudo /home/ToFF/noVNC/utils/launch.sh --vnc 127.0.0.1:5901 --listen 80 &
+
 echo "$USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 echo "$NAS:/volume1/Download/ /mnt/Download nfs nouser,atime,auto,rw,dev,exec,suid 0   0" >> /etc/fstab
