@@ -146,6 +146,7 @@ sed -i "s/$OLD_IP/$DOCKER_IP/g" <file>
 out=`echo $1 | sed -e "s|-raw.\(.*\)$|.\1|"`
 ... | sed -e 's/^ *//g' -e 's/ *$//g' -e 's/\"//g'<file>
 sed -i "s/^\(\$dbserver=\).*/\1'mysqlserver';/" 
+sed -i "s/^.*PasswordAuthentication.*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
 # Insert <new> before pattern
 sed -i "/<pattern>/i<new>/" <file>
 # After
