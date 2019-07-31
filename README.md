@@ -147,6 +147,8 @@ out=`echo $1 | sed -e "s|-raw.\(.*\)$|.\1|"`
 ... | sed -e 's/^ *//g' -e 's/ *$//g' -e 's/\"//g'<file>
 sed -i "s/^\(\$dbserver=\).*/\1'mysqlserver';/" 
 sed -i "s/^.*PasswordAuthentication.*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
+# Comment line starting by pattern between start and end
+sed -i '/^start$/,/end/{ /pattern/ s/^/#/;}' file 
 # Insert <new> before pattern
 sed -i "/<pattern>/i<new>/" <file>
 # After
