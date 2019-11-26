@@ -155,6 +155,8 @@ sed -i "/<pattern>/i<new>/" <file>
 sed -i "/<pattern>/a<new>/" <file>
 # replace by <value> in key: value
 sed -i "s/^\(<key>: \).*/\1<value>/" 
+# Comment if no exists
+sed -i '/<pattern>/ s/^#*/#/' file.txt
 ```
 
 ### Read
