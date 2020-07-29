@@ -153,12 +153,17 @@ sed -i "s/$OLD_IP/$DOCKER_IP/g" <file>
 out=`echo $1 | sed -e "s|-raw.\(.*\)$|.\1|"`
 ... | sed -e 's/^ *//g' -e 's/ *$//g' -e 's/\"//g'<file>
 sed -i "s/^\(\$dbserver=\).*/\1'mysqlserver';/" 
+sed -i "s/^.*PasswordAuthentication.*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
+# Comment line starting by pattern between start and end
+sed -i '/^start$/,/end/{ /pattern/ s/^/#/;}' file 
 # Insert <new> before pattern
 sed -i "/<pattern>/i<new>/" <file>
 # After
 sed -i "/<pattern>/a<new>/" <file>
 # replace by <value> in key: value
 sed -i "s/^\(<key>: \).*/\1<value>/" 
+# Comment if not exists
+sed -i '/<pattern>/ s/^#*/#/' file.txt
 ```
 
 ### Read
