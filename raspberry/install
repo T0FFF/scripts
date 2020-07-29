@@ -6,6 +6,11 @@ samba
 
 apt-get install samba
 
+
+fstab
+nas.myhost.fr:/volume1/Download/ /mnt/Download nfs nouser,atime,auto,rw,dev,exec,suid 0   0
+//nas.myhost.fr/6To /mnt/6To cifs username=ToFF,password=XXXXXXXX,uid=1000,gid=1000,iocharset=utf8 0 0
+
 root@home:~# pdbedit -a mon_nom-dutilisateur
 root@home:~# smbpasswd mon_nom-dutilisateur
 

@@ -1,6 +1,13 @@
 # Ubuntu / Debian
 ```
 
+
+apt upgrade
+apt install log2ram
+df -kh
+init 6
+
+
 sh -c "$(wget https://raw.githubusercontent.com/T0FFF/scripts/master/apt/bootstrap.sh -O -)"
 sh -c "$(wget https://raw.githubusercontent.com/T0FFF/scripts/master/apt/boshTools.sh -O -)"
 

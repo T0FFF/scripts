@@ -15,7 +15,7 @@ apt-get upgrade -y
 apt-get dist-upgrade -y
 rpi-update
 
-apt-get install samba unrar-free zlib1g-dev gcc make git autoconf autogen automake pkg-config tightvncserver rpi-update vim mlocate net-tools tcpdump zsh vlc motion kodi hdparm sysbench xfce4 xfce4-goodies iceweasel
+apt-get install samba unrar-free zlib1g-dev gcc make git autoconf autogen automake pkg-config tightvncserver rpi-update vim mlocate net-tools tcpdump zsh vlc motion kodi hdparm sysbench xfce4 xfce4-goodies iceweasel log2ram 
 
 update-rc.d tightvnc defaults
 echo "$USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
@@ -28,4 +28,19 @@ sh -c "$(wget https://raw.githubusercontent.com/T0FFF/oh-my-zsh/master/tools/ins
 echo "source /home/$USER/.zshrc" > /root/.zshrc
 
 
+# VNC : https://www.raspberrypi.org/forums/viewtopic.php?t=81165
+sudo apt-get update
+sudo apt-get install tightvncserver screen -y
+# lauch tightvncserver and enter password
+tightvncserver
+vncpasswd (le simple)
+cd /usr/local/share/
+sudo git clone git://github.com/kanaka/noVNC
+sudo git clone git://github.com/novnc/noVNC
+cd utils
+sudo ./launch.sh
+
+cd /etc/init.d/
+sudo wget https://dl.dropboxusercontent.com/u/14125489/RaspberryPi/vncboot --no-check-certificate
+sudo nano vncboot
 
